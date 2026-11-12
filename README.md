@@ -27,4 +27,4 @@ The scraper stores catalogue metadata and official links in `data/materials.json
 ## Contributors
 
 - Tlotlang Galaletsang Ramatlotlo
-- Kgosi Sebako
+- Kgosi Sebako 
