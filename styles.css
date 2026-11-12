@@ -167,6 +167,50 @@ kbd { display: grid; width: 19px; height: 20px; flex: 0 0 auto; place-items: cen
 .footer-year { color: #969990; font-size: 8px; letter-spacing: 1px; }
 .noscript-note { padding: 15px; background: #fff4e8; color: #694b37; text-align: center; }
 
+.hero {
+  background:
+    radial-gradient(ellipse at 86% 47%, #e8eddd 0, #e8eddd80 23%, transparent 48%),
+    radial-gradient(ellipse at 7% 8%, #fffefa 0, transparent 48%);
+}
+.hero-copy { animation: rise-in .7s both; }
+.hero-art { animation: fade-in .85s .12s both; }
+.art-orbit { animation: orbit-turn 32s linear infinite; }
+.orbit-two { animation-direction: reverse; animation-duration: 42s; }
+.art-card { animation: card-float 5s ease-in-out infinite; }
+.art-spark { animation: sparkle 3.2s ease-in-out infinite; }
+.spark-two { animation-delay: .8s; }
+.primary-button { box-shadow: 0 5px 13px #245c4b20; }
+.primary-button:hover { box-shadow: 0 9px 20px #245c4b2b; }
+.resource-card { animation: fade-in .5s both; }
+.resource-card:nth-child(4n + 2) { animation-delay: .06s; }
+.resource-card:nth-child(4n + 3) { animation-delay: .12s; }
+.resource-card:nth-child(4n + 4) { animation-delay: .18s; }
+.card-illustration span { transition: transform .25s ease; }
+.resource-card:hover .card-illustration span:nth-child(odd) { transform: translateY(-3px) rotate(-4deg); }
+.resource-card:hover .card-illustration span:nth-child(even) { transform: translateY(3px) rotate(4deg); }
+.filter-chip, .saved-toggle, .nav-link { transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease; }
+.filter-chip:active, .saved-toggle:active { transform: scale(.96); }
+.about-star { animation: sparkle 4s ease-in-out infinite; }
+.text-link { transition: gap .2s ease; }
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes orbit-turn { to { transform: rotate(360deg); } }
+@keyframes card-float {
+  0%, 100% { transform: rotate(4deg) translateY(0); }
+  50% { transform: rotate(2deg) translateY(-8px); }
+}
+@keyframes sparkle {
+  0%, 100% { opacity: .7; transform: scale(.9) rotate(-8deg); }
+  50% { opacity: 1; transform: scale(1.12) rotate(8deg); }
+}
+
 @media (min-width: 1241px) {
   .hero { padding-right: 114px; padding-left: 114px; }
 }
