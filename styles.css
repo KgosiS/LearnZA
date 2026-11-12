@@ -154,6 +154,12 @@ kbd { display: grid; width: 19px; height: 20px; flex: 0 0 auto; place-items: cen
 .about-copy { max-width: 630px; margin-bottom: 0; color: #5e6860; font: 500 16px/1.7 var(--font-display); letter-spacing: -.2px; }
 .about-signoff { align-self: end; padding-bottom: 5px; color: #727b72; font: italic 12px Georgia, serif; white-space: nowrap; }
 .about-signoff span { color: var(--coral); }
+.contributors { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 24px; padding-top: 30px; padding-bottom: 38px; border-top: 1px solid var(--line); }
+.contributors-heading .eyebrow { margin-bottom: 10px; }
+.contributors h2 { margin: 0; font-size: 27px; line-height: 1.25; letter-spacing: -1.3px; font-weight: 600; }
+.contributors h2 span { color: var(--green); font-family: Georgia, serif; font-weight: 400; font-style: italic; }
+.contributors-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.contributors-list li { padding: 13px 15px; border: 1px solid var(--line); border-radius: 5px; background: var(--white); color: #59645c; font-size: 11px; font-weight: 600; line-height: 1.5; }
 .site-footer { display: flex; min-height: 75px; align-items: center; justify-content: space-between; max-width: 1240px; margin: 0 auto; padding: 0 56px; border-top: 1px solid var(--line); }
 .footer-brand { font-size: 16px; }
 .footer-brand .brand-mark { width: 26px; height: 26px; border-radius: 7px; font-size: 15px; }
@@ -224,6 +230,10 @@ kbd { display: grid; width: 19px; height: 20px; flex: 0 0 auto; place-items: cen
   .about-star { font-size: 25px; }
   .about-copy { font-size: 14px; line-height: 1.65; }
   .about-signoff { grid-column: 2; justify-self: end; margin-top: 3px; }
+  .contributors { grid-template-columns: 1fr; gap: 17px; padding: 24px 20px 30px; }
+  .contributors h2 { font-size: 24px; }
+  .contributors-list { gap: 7px; }
+  .contributors-list li { padding: 11px 10px; font-size: 10px; }
   .site-footer { min-height: 67px; padding: 0 20px; }
   .footer-brand { font-size: 14px; }
   .footer-brand .brand-mark { width: 24px; height: 24px; }
