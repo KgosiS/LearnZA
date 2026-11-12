@@ -35,6 +35,16 @@ button { color: inherit; }
 .hero { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; max-width: 1240px; min-height: 490px; margin: 0 auto; padding: 58px 9.2% 63px; overflow: hidden; }
 .hero::before { position: absolute; top: 24px; left: 9.2%; width: 72px; height: 4px; border-radius: 4px; background: linear-gradient(90deg, #007749 0 17%, #ffb81c 17% 34%, #de3831 34% 51%, #002395 51% 68%, #fff 68% 84%, #202a27 84%); content: ""; }
 .hero-copy { position: relative; z-index: 1; }
+.share-menu { position: relative; width: fit-content; margin-top: 12px; }
+.share-menu summary { display: inline-flex; min-height: 38px; align-items: center; gap: 8px; padding: 0 12px; border: 1px solid #d9ded5; border-radius: 5px; background: var(--white); color: var(--green); cursor: pointer; font-size: 11px; font-weight: 600; list-style: none; }
+.share-menu summary::-webkit-details-marker { display: none; }
+.share-menu summary::marker { content: ""; }
+.share-menu summary:hover, .share-menu[open] summary { border-color: #9eb4a3; background: #f0f3eb; }
+.share-menu summary:focus-visible, .share-options a:focus-visible, .share-action:focus-visible { outline: 2px solid #8da99c; outline-offset: 2px; }
+.share-menu summary svg { width: 15px; stroke: currentColor; stroke-width: 1.7; }
+.share-options { display: grid; min-width: 190px; gap: 2px; margin-top: 6px; padding: 6px; border: 1px solid var(--line); border-radius: 5px; background: var(--white); box-shadow: 0 8px 20px #283e2c12; }
+.share-options a, .share-action { padding: 8px 9px; border: 0; border-radius: 3px; background: transparent; color: #626b64; cursor: pointer; font-size: 11px; text-align: left; }
+.share-options a:hover, .share-action:hover { background: #edf2e8; color: var(--green); }
 .eyebrow { margin: 0 0 17px; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1.45px; }
 .eyebrow-line { display: inline-block; width: 20px; height: 1px; margin-right: 7px; vertical-align: middle; background: var(--green); }
 h1, h2, p { margin-top: 0; }

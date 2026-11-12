@@ -1,4 +1,4 @@
-const SHELL_CACHE = "learnza-shell-v1";
+const SHELL_CACHE = "learnza-shell-v2";
 const MATERIAL_CACHE = "learnza-materials-v1";
 const APP_SHELL = [
   "./",

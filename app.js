@@ -58,6 +58,8 @@ const actionStatus = document.querySelector("#action-status");
 const catalogUpdated = document.querySelector("#catalog-updated");
 const connectionLabel = document.querySelector("#connection-label");
 const offlineStatus = document.querySelector(".offline-status");
+const nativeShareButton = document.querySelector("#native-share");
+const copyShareLinkButton = document.querySelector("#copy-share-link");
 
 let activeFilter = "All";
 let showingSaved = false;
@@ -179,6 +181,66 @@ function updateConnectionStatus() {
   offlineStatus.classList.toggle("is-offline", !online);
 }
 
+function configureShareLinks() {
+  const shareUrl = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+  const shareTitle = "LearnZA — Learning belongs to everyone";
+  const shareText = "Free South African learning resources for Grades 1–12. Every child belongs.";
+  const setShareLink = (service, href) => {
+    const link = document.querySelector(`[data-share-service="${service}"]`);
+    if (link) link.href = href;
+  };
+  const facebook = new URL("https://www.facebook.com/sharer/sharer.php");
+  facebook.searchParams.set("u", shareUrl);
+  setShareLink("facebook", facebook.href);
+
+  const x = new URL("https://twitter.com/intent/tweet");
+  x.searchParams.set("text", shareTitle);
+  x.searchParams.set("url", shareUrl);
+  setShareLink("x", x.href);
+
+  const whatsapp = new URL("https://wa.me/");
+  whatsapp.searchParams.set("text", `${shareTitle} ${shareUrl}`);
+  setShareLink("whatsapp", whatsapp.href);
+
+  const linkedin = new URL("https://www.linkedin.com/sharing/share-offsite/");
+  linkedin.searchParams.set("url", shareUrl);
+  setShareLink("linkedin", linkedin.href);
+
+  const telegram = new URL("https://t.me/share/url");
+  telegram.searchParams.set("url", shareUrl);
+  telegram.searchParams.set("text", shareTitle);
+  setShareLink("telegram", telegram.href);
+
+  const email = new URL("mailto:");
+  email.searchParams.set("subject", shareTitle);
+  email.searchParams.set("body", `${shareText} ${shareUrl}`);
+  setShareLink("email", email.href);
+
+  if (typeof navigator.share === "function") {
+    nativeShareButton.hidden = false;
+    nativeShareButton.addEventListener("click", async () => {
+      try {
+        await navigator.share({ title: shareTitle, text: shareText, url: shareUrl });
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.error("Could not share LearnZA.", error);
+          actionStatus.textContent = "LearnZA could not be shared. Please choose another sharing option.";
+        }
+      }
+    });
+  }
+
+  copyShareLinkButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      actionStatus.textContent = "LearnZA link copied.";
+    } catch (error) {
+      console.error("Could not copy the LearnZA link.", error);
+      actionStatus.textContent = "The link could not be copied. Please use one of the other sharing options.";
+    }
+  });
+}
+
 async function sendWorkerMessage(message) {
   const registration = await navigator.serviceWorker.ready;
   const worker = navigator.serviceWorker.controller || registration.active;
@@ -260,5 +322,6 @@ if ("serviceWorker" in navigator) {
 }
 
 updateConnectionStatus();
+configureShareLinks();
 renderMaterials();
 loadDbeMaterials();
