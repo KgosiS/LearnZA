@@ -12,7 +12,7 @@ Serve this folder over `localhost` (service workers do not work from a `file://`
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000>. The app shell is cached on your first visit. LearnZA guides can be saved from the site for offline reading. DBE materials open at their official source; download a PDF there to keep it on your device for offline use.
+Then open <http://localhost:8000>. The app shell is cached after you first visit while connected; the site cannot be opened offline before that first visit. Use **Save offline** on LearnZA guides before disconnecting. DBE materials open at their official source and require internet access; download a PDF there to keep it on your device for offline use.
 
 ## DBE resource catalogue
 

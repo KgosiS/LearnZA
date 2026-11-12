@@ -1,4 +1,4 @@
-const SHELL_CACHE = "learnza-shell-v3";
+const SHELL_CACHE = "learnza-shell-v4";
 const MATERIAL_CACHE = "learnza-materials-v1";
 const APP_SHELL = [
   "./",
@@ -19,8 +19,11 @@ const MATERIAL_PATHS = new Set([
 ].map(path => new URL(path, self.registration.scope).pathname));
 
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(APP_SHELL)));
-  self.skipWaiting();
+  event.waitUntil((async () => {
+    const cache = await caches.open(SHELL_CACHE);
+    await cache.addAll(APP_SHELL);
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener("activate", event => {
@@ -74,6 +77,24 @@ self.addEventListener("fetch", event => {
         return response;
       } catch {
         return new Response("This guide isn't available offline yet. Connect to the internet and save it for later.", {
+          status: 503,
+          headers: { "Content-Type": "text/plain; charset=utf-8" }
+        });
+      }
+    })());
+    return;
+  }
+
+  if (request.mode === "navigate") {
+    event.respondWith((async () => {
+      try {
+        return await fetch(request);
+      } catch {
+        const cachedPage = await caches.match(request, { ignoreSearch: true });
+        if (cachedPage) return cachedPage;
+
+        const offlineHome = await caches.match(new URL("./index.html", self.registration.scope).href);
+        return offlineHome || new Response("LearnZA is not available offline yet. Open it once while connected to the internet.", {
           status: 503,
           headers: { "Content-Type": "text/plain; charset=utf-8" }
         });
