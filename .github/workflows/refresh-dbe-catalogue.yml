@@ -1,0 +1,26 @@
+name: Refresh DBE study materials
+
+on:
+  schedule:
+    - cron: "23 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scrape public DBE listings
+        run: python3 scripts/update_dbe_resources.py
+      - name: Commit catalogue updates
+        run: |
+          if ! git diff --quiet -- data/materials.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/materials.json
+            git commit -m "Refresh DBE study materials"
+            git push
+          fi
