@@ -24,6 +24,16 @@ python3 scripts/update_dbe_resources.py
 
 The scraper stores catalogue metadata and official links in `data/materials.json` and the page-ready bundle in `data/materials.js`; it does not copy or rehost DBE documents.
 
+## Search and link previews
+
+The homepage and study guides include page-specific canonical URLs, South African Open Graph and Twitter Card metadata, and structured `WebSite` or `LearningResource` data. Social previews use `assets/share-card.png` (1200 × 630). To refresh the share-card image after editing its generator:
+
+```sh
+node scripts/generate_share_card.js
+```
+
+The canonical links and preview images point to the GitHub Pages site at <https://kgosis.github.io/LearnZA/>.
+
 ## Contributors
 
 - Tlotlang Galaletsang Ramatlotlo

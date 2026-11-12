@@ -7,6 +7,7 @@ const APP_SHELL = [
   "./app.js",
   "./manifest.json",
   "./assets/icon.svg",
+  "./assets/share-card.png",
   "./materials/guide.css",
   "./data/materials.js"
 ];
